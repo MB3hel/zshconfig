@@ -104,9 +104,11 @@ source $ZSH/oh-my-zsh.sh
 PROMPT+="%F{yellow}%% %f"
 
 # Aliases and functions
-open(){
-    nohup xdg-open "$*" > /dev/null 2>&1
-}
+if [[ "$OSTYPE" != 'darwin'* ]]; then
+    open(){
+        nohup xdg-open "$*" > /dev/null 2>&1
+    }
+fi
 sudovim(){
     EDITOR=vim sudoedit "$*"
 }
