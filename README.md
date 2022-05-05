@@ -3,7 +3,7 @@
 This repo holds my zsh configuration.
 
 ## Installation
-
+- Install [Oh My Zsh](https://ohmyz.sh/)
 - Clone this repo to `~/.zshconfig`
 - Populate `~/.zshrc` with the following
 
