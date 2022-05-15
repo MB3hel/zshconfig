@@ -100,6 +100,17 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# WSL specific things
+if type "wslpath" > /dev/null; then
+    # Running in wsl (found wslpath executable)
+    if type "keychain" > /dev/null; then
+        # Use keychain for ssh agent
+        # TODO
+    fi
+    # Required for duplicate tab in windows terminal
+    precmd() { printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")" }
+fi
+
 # Add yellow percent sign to prompt line
 PROMPT+="%F{yellow}%% %f"
 
