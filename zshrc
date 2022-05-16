@@ -72,6 +72,11 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
+# WSL specific things
+if type "wslpath" > /dev/null; then
+    plugins+=ssh-agent
+fi
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -102,13 +107,13 @@ source $ZSH/oh-my-zsh.sh
 
 # WSL specific things
 if type "wslpath" > /dev/null; then
-    # Running in wsl (found wslpath executable)
-    if type "keychain" > /dev/null; then
-        # Use keychain for ssh agent
-        # TODO
-    fi
     # Required for duplicate tab in windows terminal
+    # Note: Feature does not work if distro run by WT using Distro.exe (eg Ubuntu.exe)
+    # Must launch with wsl.exe -d Distro (eg wsl.exe -d Ubuntu)
     precmd() { printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")" }
+
+    # Must set WSLENV to have "USERPROFILE/p" in the list on windows
+    WINHOME="$USERPROFILE"
 fi
 
 # Add yellow percent sign to prompt line
