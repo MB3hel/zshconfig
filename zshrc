@@ -119,6 +119,9 @@ fi
 # Add yellow percent sign to prompt line
 PROMPT+="%F{yellow}%% %f"
 
+# Support .dircolors file in home like bash on many distros
+test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+
 # Aliases and functions
 if [[ "$OSTYPE" != 'darwin'* ]]; then
     open(){
