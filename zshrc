@@ -1,6 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# Support .dircolors file in home like bash on many distros
+test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -118,9 +121,6 @@ fi
 
 # Add yellow percent sign to prompt line
 PROMPT+="%F{yellow}%% %f"
-
-# Support .dircolors file in home like bash on many distros
-test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 
 # Aliases and functions
 if [[ "$OSTYPE" != 'darwin'* ]]; then
