@@ -119,10 +119,15 @@ if type "wslpath" > /dev/null; then
     WINHOME="$USERPROFILE"
 fi
 
-# Show chroot name in schroots (debian chroots)
+# schroot environments
 if [[ -f /etc/debian_chroot ]]; then
+    
+    # Show name in schroots
     chroot_name=$(cat /etc/debian_chroot)
     PROMPT="($chroot_name)$PROMPT"
+
+    # Fixes issues with calculating line width
+    export LANG=en_US.UTF-8
 fi
 
 # Add yellow percent sign to prompt line
