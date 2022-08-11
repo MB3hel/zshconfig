@@ -11,8 +11,12 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
-ZSH_THEME="gentoo"
+
+if [ -f ~/.zshtheme ]; then
+    ZSH_THEME=$(head -n 1 ~/.zshtheme)
+else
+    ZSH_THEME="robbyrussell"
+fi
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -131,8 +135,10 @@ if [[ -f /etc/debian_chroot ]]; then
     export LANG=en_US.UTF-8
 fi
 
-# Add yellow percent sign to prompt line
-# PROMPT+="%F{yellow}%% %f"
+# Theme modifications
+if [ "$ZSH_THEME" = "robbyrussell" ]; then
+    PROMPT+="%F{yellow}%% %f"
+fi
 
 # Aliases and functions
 if [[ "$OSTYPE" != 'darwin'* ]]; then
