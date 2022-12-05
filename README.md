@@ -15,3 +15,11 @@ This repo holds my zsh configuration.
 # System specific Environment Variables & other settings below
 
 ```
+
+- Populate `~/.zprofile` with the following
+
+```sh
+emulate sh
+. ~/.profile
+emulate zsh
+```

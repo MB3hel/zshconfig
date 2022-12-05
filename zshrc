@@ -153,6 +153,3 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-# Environment Variables (not system specific)
-export PATH=$PATH:~/bin
-
