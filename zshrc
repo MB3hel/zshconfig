@@ -124,6 +124,12 @@ if type "wslpath" > /dev/null; then
     WINHOME="$USERPROFILE"
 fi
 
+# MSYS2 specific things
+if [ "$(uname -o)" = "Msys"  ];then
+    # Required for duplicate tab in windows terminal
+    precmd() { printf "\e]9;9;%s\e\\" "$(cygpath -w "$PWD")" }
+fi
+
 # schroot environments
 if [[ -f /etc/debian_chroot ]]; then
     
