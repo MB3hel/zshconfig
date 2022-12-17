@@ -155,6 +155,9 @@ fi
 sudovim(){
     EDITOR=vim sudoedit "$*"
 }
+sudonvim(){
+    EDITOR=nvim sudoedit "$*"
+}
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
