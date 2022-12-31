@@ -125,9 +125,17 @@ if type "wslpath" > /dev/null; then
 fi
 
 # MSYS2 specific things
-if [ "$(uname -o)" = "Msys"  ];then
+if [ "$(uname -o)" = "Msys"  ]; then
     # Required for duplicate tab in windows terminal
     precmd() { printf "\e]9;9;%s\e\\" "$(cygpath -w "$PWD")" }
+
+    # Support for MSYS2WINFIRST variable to indicate that windows tools
+    # should be used first (ie windows path version of git before msys2)
+    # Set via custom command to start zsh shell in windows terminal
+    if [ "$MSYS2WINFIRST" = "1" ]; then
+        PATH=${PATH#/usr/local/bin:/usr/bin:/bin:/opt/bin:}
+        PATH+=:/usr/local/bin:/usr/bin:/bin:/opt/bin
+    fi
 fi
 
 # schroot environments
