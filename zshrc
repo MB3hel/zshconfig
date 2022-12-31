@@ -155,7 +155,9 @@ if [ "$ZSH_THEME" = "robbyrussell" ]; then
 fi
 
 # Aliases and functions
-if [[ "$OSTYPE" != 'darwin'* ]]; then
+if [[ "$OSTYPE" = 'msys'* ]]; then
+    alias open='$HOME/.zshconfig/msys2_open.sh'
+elif [[ "$OSTYPE" != 'darwin'* ]]; then
     open(){
         nohup xdg-open "$*" > /dev/null 2>&1
     }
