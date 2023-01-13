@@ -118,7 +118,8 @@ if type "wslpath" > /dev/null; then
     # Required for duplicate tab in windows terminal
     # Note: Feature does not work if distro run by WT using Distro.exe (eg Ubuntu.exe)
     # Must launch with wsl.exe -d Distro (eg wsl.exe -d Ubuntu)
-    precmd() { printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")" }
+    keep_current_path() { printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")" }
+    precmd_functions+=(keep_current_path)     
 
     # Must set WSLENV to have "USERPROFILE/p" in the list on windows
     WINHOME="$USERPROFILE"
@@ -127,7 +128,10 @@ fi
 # MSYS2 specific things
 if [ "$(uname -o)" = "Msys"  ]; then
     # Required for duplicate tab in windows terminal
-    precmd() { printf "\e]9;9;%s\e\\" "$(cygpath -w "$PWD")" }
+    keep_current_path() {
+        printf "\e]9;9;%s\e\\" "$(cygpath -w "$PWD")"
+    }
+    precmd_functions+=(keep_current_path)
 
     # Support for MSYS2WINFIRST variable to indicate that windows tools
     # should be used first (ie windows path version of git before msys2)
