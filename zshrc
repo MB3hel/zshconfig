@@ -136,6 +136,13 @@ if [ "$(uname -o)" = "Msys"  ]; then
         PATH=${PATH#/usr/local/bin:/usr/bin:/bin:/opt/bin:}
         PATH+=:/usr/local/bin:/usr/bin:/bin:/opt/bin
     fi
+
+    # Fix zsh freeze on window resize when using windows git command
+    # Replaces a function used by zsh git plugin 
+    # Freeze does not occur when using msys2/git
+    __git_prompt_git () {
+        GIT_OPTIONAL_LOCKS=0 command /usr/bin/git "$@"
+    }
 fi
 
 # schroot environments
