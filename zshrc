@@ -138,6 +138,8 @@ if [ "$(uname -o)" = "Msys"  ]; then
     # Set via custom command to start zsh shell in windows terminal
     if [ "$MSYS2WINFIRST" = "1" ]; then
         PATH=${PATH#/usr/local/bin:/usr/bin:/bin:/opt/bin:}
+        PATH=${PATH%/usr/local/bin:/usr/bin:/bin:/opt/bin}
+        PATH=${PATH%:}
         PATH+=:/usr/local/bin:/usr/bin:/bin:/opt/bin
     fi
 
